@@ -1,0 +1,20 @@
+# Models
+*.pt
+
+# Videos
+*.mp4
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Flutter
+build/
+.dart_tool/
+.idea/
+
+# Optional large folders
+RECAP Vids/

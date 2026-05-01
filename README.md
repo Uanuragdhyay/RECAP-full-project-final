@@ -1,45 +1,152 @@
-# ReCAP – Flutter Client
+# 🏙️ UrbanCrowd Insight — Real-Time Crowd Monitoring & Heatmap Analytics
 
-Cross-platform (Android, iOS, Web, Desktop) Flutter UI for the ReCAP
-real-time crowd analysis platform.
+**UrbanCrowd Insight** is an intelligent real-time crowd monitoring system that detects people from live video streams, computes crowd density, and generates visual heatmaps using **YOLOv8**, **OpenCV**, and **Streamlit**.
 
-## Setup
+This project enables monitoring of crowd formation, congestion, and safety risks using AI-based visual analysis.
 
-```bash
-cd flutter_app
-flutter pub get
-```
+---
 
-Configure backend URL in **Settings** screen, or edit
-`lib/core/constants.dart`:
+## 🚀 Features
 
-```dart
-const kDefaultApiBaseUrl = 'http://localhost:8000';
-const kDefaultWsBaseUrl  = 'ws://localhost:8000';
-```
+###  YOLOv8-Based Real-Time Detection
+- Uses Ultralytics YOLOv8 for person detection  
+- Works on both **uploaded videos** and **webcam**  
+- Displays annotated bounding boxes
 
-## Run
+###  Intelligent Crowd Status  
+Automatically classifies:
+- 🟢 Safe  
+- 🟠 Dense  
+- 🔴 Overcrowded  
 
-```bash
-flutter run -d chrome      # Web
-flutter run -d windows     # Desktop
-flutter run                # Android / iOS (with device attached)
-```
+Supports user-adjustable threshold controls.
 
-## Architecture
+### Heatmap Generation (Dual System)
+1. **Gaussian Density Heatmap**  
+   - Uses person centroids  
+   - Visualizes density hotspots  
+2. **Activation CAM (Class Activation Map)**  
+   - Extracts YOLO’s Conv layer activations  
+   - Highlights model-focused regions  
 
-```
-lib/
-  core/        # constants, theme, router
-  models/      # data classes (Alert, AnalyticsPoint, Detection, FrameResult)
-  services/    # ApiService (REST), WsService (WebSocket), AudioService
-  providers/   # Riverpod providers (settings, stream, alerts, analytics)
-  screens/     # Dashboard, Alerts, Analytics, StreamSetup, Settings
-  widgets/     # CrowdCounter, HeatmapView, StatusBadge, AlertCard, ChartCard
-  main.dart
-```
+### 📊 Streamlit Dashboard
+- Live count  
+- Density %  
+- Status indicator  
+- Crowd history graph  
+- Side-by-side **Annotated Frame + Heatmap View**  
+- Downloadable frames & CSV history  
 
-State: **Riverpod**. Routing: **GoRouter**. Charts: **fl_chart**.
+### 💾 Data Export
+- Download **annotated frames (PNG)**  
+- Download **heatmap frames (PNG)**  
+- Export **crowd history (CSV)**  
 
-The dashboard sends webcam / video frames over WebSocket to the backend
-and renders detections + heatmap overlay returned by the server.
+### 🧩 Custom Controls
+- Upload video / webcam  
+- Density threshold slider  
+- Sensitivity slider  
+- Start/Stop processing  
+- Optional React-based UI controls
+
+---
+
+## 🛠 Tech Stack
+
+**Backend / ML**
+- Python  
+- YOLOv8 (Ultralytics)  
+- OpenCV  
+- NumPy  
+
+**Frontend**
+- Streamlit  
+- Custom React Streamlit Component  
+
+**Visualization**
+- Gaussian heatmaps  
+- CAM activation maps  
+- Line charts  
+
+---
+
+## 📂 Project Structure
+
+UrbanCrowdInsight/
+│
+├── app.py # Main Streamlit application
+├── streamlit_crowdsense_component/ # Custom React UI component
+├── frontend/ # React UI source
+│ ├── src/
+│ ├── dist/
+│ └── webpack.config.js
+│
+├── yolov8n.pt # YOLOv8 model weights
+├── test_heatmap.png # Sample output images
+├── test_annotated.png
+├── uploaded_video.mp4 # Temporary inputs
+├── requirements.txt # Dependencies
+└── streamlit_error.log # Logs  
+
+
+---
+
+## ▶️ How It Works
+
+### 1️ Input Source  
+User selects:
+- Uploaded video  
+- Webcam
+  
+### 2️ YOLOv8 detects people  
+python
+results = model(frame)
+person_count = len(results[0].boxes)
+
+### 3 Status Calculation
+ratio = count / MAX_CAPACITY
+Classifies → Safe / Dense / Overcrowded
+
+### 4️ Heatmap Generation
+Gaussian centroid-based heatmap
+CNN Activation CAM heatmap
+
+### 5️ Real-Time Dashboard
+Displays:
+Annotated frame
+Heatmap
+Count
+Density
+Status
+History chart
+
+### 6️ Export
+User can download frames & CSV.
+
+### 🖥️ Screenshots
+(Add screenshots or a Google Drive link)
+
+🎯 Use Cases
+
+Smart city monitoring
+
+Mall and airport crowd tracking
+
+Public event congestion analysis
+
+Railway/metro station monitoring
+
+Emergency crowd control
+
+👩‍💻 Author
+
+Balihaar Kaur
+
+GitHub: https://github.com/Balihaarkaur
+
+LinkedIn: https://linkedin.com/in/BalihaarKaur
+
+### Contributions
+
+Pull requests are welcome!
+Please open an issue for bug fixes or feature suggestions.

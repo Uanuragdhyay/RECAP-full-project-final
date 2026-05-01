@@ -71,23 +71,19 @@ Supports user-adjustable threshold controls.
 ---
 
 ## 📂 Project Structure
-
-UrbanCrowdInsight/
+crowd-monitor/
+├── frontend/
+│   ├── lib/
+│   │   └── main.dart
+│   ├── pubspec.yaml
 │
-├── app.py # Main Streamlit application
-├── streamlit_crowdsense_component/ # Custom React UI component
-├── frontend/ # React UI source
-│ ├── src/
-│ ├── dist/
-│ └── webpack.config.js
+├── backend/
+│   ├── main.py
+│   ├── requirements.txt
+|
+├── test videos
 │
-├── yolov8n.pt # YOLOv8 model weights
-├── test_heatmap.png # Sample output images
-├── test_annotated.png
-├── uploaded_video.mp4 # Temporary inputs
-├── requirements.txt # Dependencies
-└── streamlit_error.log # Logs  
-
+├── README.md
 
 ---
 
@@ -137,14 +133,6 @@ Public event congestion analysis
 Railway/metro station monitoring
 
 Emergency crowd control
-
-👩‍💻 Author
-
-Balihaar Kaur
-
-GitHub: https://github.com/Balihaarkaur
-
-LinkedIn: https://linkedin.com/in/BalihaarKaur
 
 ### Contributions
 

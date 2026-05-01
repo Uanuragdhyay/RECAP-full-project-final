@@ -60,8 +60,7 @@ Supports user-adjustable threshold controls.
 - NumPy  
 
 **Frontend**
-- Streamlit  
-- Custom React Streamlit Component  
+- Flutter application  
 
 **Visualization**
 - Gaussian heatmaps  
@@ -70,20 +69,24 @@ Supports user-adjustable threshold controls.
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
+
+```
 crowd-monitor/
+│
 ├── frontend/
 │   ├── lib/
 │   │   └── main.dart
-│   ├── pubspec.yaml
+│   └── pubspec.yaml
 │
 ├── backend/
 │   ├── main.py
-│   ├── requirements.txt
-|
-├── test videos
+│   └── requirements.txt
 │
-├── README.md
+├── test videos/
+│
+└── README.md
+```
 
 ---
 

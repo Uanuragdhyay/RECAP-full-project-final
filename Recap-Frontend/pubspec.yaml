@@ -17,20 +17,20 @@ dependencies:
   go_router: ^14.2.7
 
   # Networking
-#  dio: ^5.7.0
-  web_socket_channel: ^2.4.0
+  dio: ^5.7.0
+  web_socket_channel: ^3.0.1
 
   # Media
   video_player: ^2.9.1
-#  camera: ^0.11.0+1
+  camera: ^0.11.0+1
   file_picker: ^8.1.2
   image: ^4.2.0
 
   # Charts + UI
-  fl_chart: ^0.66.0
-  google_fonts: ^6.1.0
+  fl_chart: ^0.69.0
+  google_fonts: ^6.2.1
   intl: ^0.19.0
-#  audioplayers: ^6.1.0
+  audioplayers: ^6.1.0
   shared_preferences: ^2.3.2
 
 dev_dependencies:

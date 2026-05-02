@@ -1,9 +1,0 @@
-2026-04-25 20:42:35,049 [ERROR] Unhandled exception in processing loop
-Traceback (most recent call last):
-  File "C:\Users\uanur\Desktop\ReCAP\ReCAP\app.py", line 633, in <module>
-    _process_stream()
-    ~~~~~~~~~~~~~~~^^
-  File "C:\Users\uanur\Desktop\ReCAP\ReCAP\app.py", line 492, in _process_stream
-    person_count = dense_count
-                   ^^^^^^^^^^^
-UnboundLocalError: cannot access local variable 'dense_count' where it is not associated with a value

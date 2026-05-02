@@ -1,45 +1,143 @@
-# ReCAP – Flutter Client
+# 🏙️ UrbanCrowd Insight — Real-Time Crowd Monitoring & Heatmap Analytics
 
-Cross-platform (Android, iOS, Web, Desktop) Flutter UI for the ReCAP
-real-time crowd analysis platform.
+**UrbanCrowd Insight** is an intelligent real-time crowd monitoring system that detects people from live video streams, computes crowd density, and generates visual heatmaps using **YOLOv8**, **OpenCV**, and **Streamlit**.
 
-## Setup
+This project enables monitoring of crowd formation, congestion, and safety risks using AI-based visual analysis.
 
-```bash
-cd flutter_app
-flutter pub get
+---
+
+## 🚀 Features
+
+###  YOLOv8-Based Real-Time Detection
+- Uses Ultralytics YOLOv8 for person detection  
+- Works on both **uploaded videos** and **webcam**  
+- Displays annotated bounding boxes
+
+###  Intelligent Crowd Status  
+Automatically classifies:
+- 🟢 Safe  
+- 🟠 Dense  
+- 🔴 Overcrowded  
+
+Supports user-adjustable threshold controls.
+
+### Heatmap Generation (Dual System)
+1. **Gaussian Density Heatmap**  
+   - Uses person centroids  
+   - Visualizes density hotspots  
+2. **Activation CAM (Class Activation Map)**  
+   - Extracts YOLO’s Conv layer activations  
+   - Highlights model-focused regions  
+
+### 📊 Streamlit Dashboard
+- Live count  
+- Density %  
+- Status indicator  
+- Crowd history graph  
+- Side-by-side **Annotated Frame + Heatmap View**  
+- Downloadable frames & CSV history  
+
+### 💾 Data Export
+- Download **annotated frames (PNG)**  
+- Download **heatmap frames (PNG)**  
+- Export **crowd history (CSV)**  
+
+### 🧩 Custom Controls
+- Upload video / webcam  
+- Density threshold slider  
+- Sensitivity slider  
+- Start/Stop processing  
+- Optional React-based UI controls
+
+---
+
+## 🛠 Tech Stack
+
+**Backend / ML**
+- Python  
+- YOLOv8 (Ultralytics)  
+- OpenCV  
+- NumPy  
+
+**Frontend**
+- Flutter application  
+
+**Visualization**
+- Gaussian heatmaps  
+- CAM activation maps  
+- Line charts  
+
+---
+
+## 📁 Project Structure
+
+```
+crowd-monitor/
+│
+├── frontend/
+│   ├── lib/
+│   │   └── main.dart
+│   └── pubspec.yaml
+│
+├── backend/
+│   ├── main.py
+│   └── requirements.txt
+│
+├── test videos/
+│
+└── README.md
 ```
 
-Configure backend URL in **Settings** screen, or edit
-`lib/core/constants.dart`:
+---
 
-```dart
-const kDefaultApiBaseUrl = 'http://localhost:8000';
-const kDefaultWsBaseUrl  = 'ws://localhost:8000';
-```
+## ▶️ How It Works
 
-## Run
+### 1️ Input Source  
+User selects:
+- Uploaded video  
+- Webcam
+  
+### 2️ YOLOv8 detects people  
+python
+results = model(frame)
+person_count = len(results[0].boxes)
 
-```bash
-flutter run -d chrome      # Web
-flutter run -d windows     # Desktop
-flutter run                # Android / iOS (with device attached)
-```
+### 3 Status Calculation
+ratio = count / MAX_CAPACITY
+Classifies → Safe / Dense / Overcrowded
 
-## Architecture
+### 4️ Heatmap Generation
+Gaussian centroid-based heatmap
+CNN Activation CAM heatmap
 
-```
-lib/
-  core/        # constants, theme, router
-  models/      # data classes (Alert, AnalyticsPoint, Detection, FrameResult)
-  services/    # ApiService (REST), WsService (WebSocket), AudioService
-  providers/   # Riverpod providers (settings, stream, alerts, analytics)
-  screens/     # Dashboard, Alerts, Analytics, StreamSetup, Settings
-  widgets/     # CrowdCounter, HeatmapView, StatusBadge, AlertCard, ChartCard
-  main.dart
-```
+### 5️ Real-Time Dashboard
+Displays:
+Annotated frame
+Heatmap
+Count
+Density
+Status
+History chart
 
-State: **Riverpod**. Routing: **GoRouter**. Charts: **fl_chart**.
+### 6️ Export
+User can download frames & CSV.
 
-The dashboard sends webcam / video frames over WebSocket to the backend
-and renders detections + heatmap overlay returned by the server.
+### 🖥️ Screenshots
+(Add screenshots or a Google Drive link)
+
+🎯 Use Cases
+
+Smart city monitoring
+
+Mall and airport crowd tracking
+
+Public event congestion analysis
+
+Railway/metro station monitoring
+
+Emergency crowd control
+
+### Contributions
+
+Pull requests are welcome!
+Please open an issue for bug fixes or feature suggestions.
